@@ -12,7 +12,7 @@ function parseJSONAsync(json, callback) {
   try {
     setTimeout(() => {
       callback(JSON.parse(json))
-    }, 1000)
+    }, 10)
   } catch (err) {
     console.error('エラーをキャッチ', err)
     callback({})
