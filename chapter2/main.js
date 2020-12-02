@@ -19,9 +19,23 @@ function parseJSONAsync(json, callback) {
   }
 }
 
-parseJSONAsync('不正なJSON', result => {
-  console.log('parse結果', result)
+// parseJSONAsync('不正なJSON', result => {
+//   console.log('parse結果', result)
+// })
+
+// process.on('uncaughtException', err => process.exit(1))
+
+// p51
+function parseJSONAsync2(json, callback) {
+  setTimeout(() => {
+    try {
+      callback(JSON.parse(json))
+    } catch (err) {
+      callback(err)
+    }
+  }, 1000)
+}
+
+parseJSONAsync2('不正なJSON', (err, result) => {
+  console.log('parse結果', err, result)
 })
-
-process.on('uncaughtException', err => process.exit(1))
-
