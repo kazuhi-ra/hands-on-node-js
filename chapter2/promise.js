@@ -21,4 +21,17 @@ parseJSONAsync('Yo')
   .then(res => console.log(res))
   .catch(err => console.log(err))
   .finally(() => console.log('finalyです'))
-  
+
+// p78 Promise.race()を使ったタイムアウトの実装
+function withTimeout(promise, timeoust) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('タイムアウトです')), timeoust)
+    ),
+  ])
+}
+
+const promise = new Promise(resolve => setTimeout(() => resolve(1), 20))
+console.log(withTimeout(promise, 30))
+console.log(withTimeout(promise, 10))
