@@ -23,3 +23,5 @@ parseJSONAsync('不正なJSON', result => {
   console.log('parse結果', result)
 })
 
+process.on('uncaughtException', err => process.exit(1))
+
