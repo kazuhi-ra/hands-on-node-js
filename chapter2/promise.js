@@ -34,4 +34,10 @@ function withTimeout(promise, timeoust) {
 
 const promise = new Promise(resolve => setTimeout(() => resolve(1), 20))
 console.log(withTimeout(promise, 30))
-console.log(withTimeout(promise, 10))
+// console.log(withTimeout(promise, 10))
+
+// p83 util.promisify()でsetTimeoutPromiseを作る
+const util = require('util')
+const setTimeoutPromise = util.promisify(setTimeout)
+
+setTimeoutPromise(200).then(() => console.log('setTimeoutPromiseです'))
