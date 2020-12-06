@@ -7,3 +7,6 @@ eventEmitter.on('heyHey', () => {
 })
 
 eventEmitter.emit('heyHey')
+
+console.log(eventEmitter.emit('heyHey'))
+console.log(eventEmitter.emit('yoYo'))
