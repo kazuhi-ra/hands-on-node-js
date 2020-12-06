@@ -1,19 +1,20 @@
 const fetch = require('node-fetch')
 
-const userIds = ['kazuhi-ra', 'hitode909', 'pastak']
+const usersId = ['kazuhi-ra', 'hitode909', 'pastak']
 
-const yo = async () => {
+const fetchGithubUsersInfo = async (usersId) => {
   try {
-    const response = await fetch(
-      `https://api.github.com/users/${encodeURIComponent(userIds[2])}`
+    const promises = usersId.map(userId =>
+      fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     )
-    const userInfo = await response.json()
+    const responses = await Promise.all(promises)
+    const transformResponses = responses.map(res => res.json())
 
-    // console.log(response)
-    console.log(userInfo)
+    // return Promise.all(transformResponses)
+    return Promise.all(transformResponses)
   } catch (e) {
     console.log(e)
   }
 }
 
-yo()
+fetchGithubUsersInfo(usersId).then(res => console.log(res))
