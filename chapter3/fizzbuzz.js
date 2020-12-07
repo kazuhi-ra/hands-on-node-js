@@ -27,7 +27,7 @@ const endListener = (eventEmitter) => {
 
 const createFizzBuzzEventEmitter = until => {
   const eventEmitter = new events.EventEmitter()
-  _emitFizzBuzz(eventEmitter, until)
+  process.nextTick(() => _emitFizzBuzz(eventEmitter, until))
 
   return eventEmitter
 }
