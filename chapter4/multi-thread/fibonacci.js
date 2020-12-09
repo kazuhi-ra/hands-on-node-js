@@ -1,5 +1,6 @@
 'use strict'
 const fibonacci = require('../fibonacci')
-const { workerData, parentPort } = require('worker_threads')
+const { parentPort } = require('worker_threads')
 
-parentPort.postMessage(fibonacci(workerData))
+// parentPort.postMessage(fibonacci(workerData))
+parentPort.on('message', n => parentPort.postMessage(fibonacci(n)))
