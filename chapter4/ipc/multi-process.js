@@ -3,7 +3,7 @@ const { fork, setupMaster } = require('cluster')
 
 console.log('メインプロセス', process.pid)
 
-setupMaster({ exec: `${__dirname}/web-app` })
+setupMaster({ exec: `${__dirname}/web-app`, serializetion: 'advanced' })
 
 const cpuCount = require('os').cpus().length
 for (let i = 0; i < cpuCount; i++) {
